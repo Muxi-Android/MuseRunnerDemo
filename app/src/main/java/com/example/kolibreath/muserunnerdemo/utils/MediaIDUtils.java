@@ -4,7 +4,7 @@ package com.example.kolibreath.muserunnerdemo.utils;
 import java.util.Arrays;
 
 //MediaIDs are defined by the User, the form of them are like:
-//<categoryType>/<categoryValue>|<musicUniqueId>
+//<categoryType>/<categoryValue>|<musicUniqueId> the two-hierarchy item
 public class MediaIDUtils {
 
     public static final String MEDIA_ID_EMPTY_ROOT = "__EMPTY_ROOT__";
@@ -14,7 +14,7 @@ public class MediaIDUtils {
     private static final char CATEGORY_SEPARATOR = '/';
     private static final char LEAF_SPEARATOR = '|';
 
-    private static String[] getHierarchy(String mediaID){
+    public static String[] getHierarchy(String mediaID){
         int pos = mediaID.indexOf(LEAF_SPEARATOR);
         if(pos >= 0){
             mediaID = mediaID.substring(0,pos);
