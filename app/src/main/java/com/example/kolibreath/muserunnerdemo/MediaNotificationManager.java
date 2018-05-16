@@ -115,6 +115,39 @@ public class MediaNotificationManager extends BroadcastReceiver{
 
     }
 
+    private int addActions(final NotificationCompat.Builder notificationBuilder) {
+        int playPauseButtonPosition = 0;
+        if ((mPlaybackState.getActions() & PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS) != 0) {
+            //todo using proper mipmap
+//            notificationBuilder.addAction(R.drawable.ic_skip_previous_white_24dp,
+//                    mMusicService.getString(R.string.label_previous), mPreviousIntent);
+            playPauseButtonPosition = 1;
+        }
+
+        // Play or pause button, depending on the current state.
+        final String label;
+        final int icon;
+        final PendingIntent intent;
+        if (mPlaybackState.getState() == PlaybackStateCompat.STATE_PLAYING) {
+//            label = mMusicService.getString(R.string.label_pause);
+//            icon = R.drawable.uamp_ic_pause_white_24dp;
+//            intent = mPauseIntent;
+        } else {
+//            label = mService.getString(R.string.label_play);
+//            icon = R.drawable.uamp_ic_play_arrow_white_24dp;
+//            intent = mPlayIntent;
+        }
+//        notificationBuilder.addAction(new NotificationCompat.Action(icon, label, intent));
+
+        // If skip to next action is enabled
+        if ((mPlaybackState.getActions() & PlaybackStateCompat.ACTION_SKIP_TO_NEXT) != 0) {
+//            notificationBuilder.addAction(R.drawable.ic_skip_next_white_24dp,
+//                    mService.getString(R.string.label_next), mNextIntent);
+        }
+
+        return playPauseButtonPosition;
+    }
+
     private void setNotificationPlaybackState(NotificationCompat.Builder builder){
         if (mPlaybackState == null || !mStarted){
             mMusicService.stopForeground(true);
