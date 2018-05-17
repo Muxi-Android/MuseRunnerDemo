@@ -1,13 +1,15 @@
 package com.example.kolibreath.muserunnerdemo.presenter;
 
+
 import android.content.Context;
-import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaMetadataCompat;
 
 import com.example.kolibreath.muserunnerdemo.view.IBrowseView;
 import com.example.kolibreath.muserunnerdemo.view.IControlView;
 
-//网络请求 还有根据流派分配 id还有设置key 都在这里解决
-public class IMusicPresenterImpl implements IMusicPlayPresenter {
+import java.util.Iterator;
+
+public class IMusicPresenterImpl implements IMusicSourcePresenter {
 
     private Context mContext;
     private IControlView mIControlView;
@@ -46,5 +48,14 @@ public class IMusicPresenterImpl implements IMusicPlayPresenter {
 
     }
 
+    @Override
+    public void execRequest() {
+
+    }
+
+    @Override
+    public Iterator<MediaMetadataCompat> iterator() {
+        return null;
+    }
 
 }
