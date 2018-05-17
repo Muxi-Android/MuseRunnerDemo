@@ -19,9 +19,9 @@ public class MusicService extends MediaBrowserServiceCompat {
     private QueueManager.MetadataUpdateListener mMetadataUpdateListenter;
 
     //indicate a coming action
-    private static final String ACTION_CMD = "net.muxistudio.muserunner.action_cmd";
-    private static final String CMD_PAUSE = "net.muxistudio.muserunner.action_pause";
-    private static final String CMD_NAME = "net.muxistudio.muserunner.action_name";
+    public static final String ACTION_CMD = "net.muxistudio.muserunner.action_cmd";
+    public static final String CMD_PAUSE = "net.muxistudio.muserunner.action_pause";
+    public static final String CMD_NAME = "net.muxistudio.muserunner.action_name";
 
     private IMusicSourcePresenter msourcePresenter;
     private QueueManager mQueueManager;
