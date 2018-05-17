@@ -37,4 +37,10 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.1.0'
     implementation'com.squareup.okhttp3:logging-interceptor:3.4.1'
     implementation'com.squareup.okhttp3:okhttp:3.4.1'
+
+
+    implementation 'com.danikula:videocache:2.7.0'
+    implementation 'com.amap.api:location:3.8.0'
+    implementation 'com.amap.api:search:6.1.0'
+    implementation 'com.amap.api:3dmap:5.0.0'
 }
