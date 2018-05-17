@@ -1,4 +1,4 @@
-package net.muxistudio.muserunnerdemo;
+package net.muxistudio.muserunnerdemo.playback;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,14 +8,30 @@ import android.support.v4.media.MediaBrowserServiceCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 
+import net.muxistudio.muserunnerdemo.QueueManager;
+import net.muxistudio.muserunnerdemo.presenter.IMusicSourcePresenter;
+import net.muxistudio.muserunnerdemo.presenter.IMusicSourcePresenterImpl;
+
 import java.util.List;
 
 public class MusicService extends MediaBrowserServiceCompat {
 
     private QueueManager.MetadataUpdateListener mMetadataUpdateListenter;
 
-    public MusicService() {
-        super();
+    //indicate a coming action
+    private static final String ACTION_CMD = "net.muxistudio.muserunner.action_cmd";
+    private static final String CMD_PAUSE = "net.muxistudio.muserunner.action_pause";
+    private static final String CMD_NAME = "net.muxistudio.muserunner.action_name";
+
+    private IMusicSourcePresenter msourcePresenter;
+    private QueueManager mQueueManager;
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        msourcePresenter = new IMusicSourcePresenterImpl();
+        QueueManager mQueueManager = new QueueManager(msourcePresenter,getResources(),mMetadataUpdateListenter);
+
     }
 
     @Nullable

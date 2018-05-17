@@ -1,10 +1,8 @@
 package net.muxistudio.muserunnerdemo.presenter;
 
 import android.support.v4.media.MediaMetadataCompat;
-
-import com.example.kolibreath.muserunnerdemo.view.IBrowseView;
-
 import net.muxistudio.muserunnerdemo.model.MusicMetaData;
+import net.muxistudio.muserunnerdemo.view.IBrowseView;
 
 import java.util.Iterator;
 public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
@@ -12,6 +10,10 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
     private IBrowseView mBrowseView;
     //MusicMetaData是一个list
     private MusicMetaData mMusicMedaData;
+
+    //提供一个空的构造函数,这个空的构造函数 提供的presenter实例
+    // 会进行少量的非ui操作
+    public IMusicSourcePresenterImpl(){ }
     //我简单的先写了一点 为了自己的需要...
     public IMusicSourcePresenterImpl(IBrowseView view){
         this.mBrowseView = view;

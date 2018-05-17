@@ -18,6 +18,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
+import net.muxistudio.muserunnerdemo.playback.MusicService;
 import net.muxistudio.muserunnerdemo.utils.ResourceHelper;
 
 //todo add Previous and back
