@@ -48,4 +48,36 @@ public class QueueUtils {
 
         return convertToQueue(tracks,hierarchy[0],hierarchy[1]);
     }
+
+    //the mediaId can be a long value
+    public static int getMusicIndex(Iterable<MediaSessionCompat.QueueItem>queueItems,
+                                    long queueId){
+        for(MediaSessionCompat.QueueItem item: queueItems){
+            int index = 0;
+            if(queueId == item.getQueueId()){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+    //the mediaId can be a String value
+    public static int getMusicIndex(Iterable<MediaSessionCompat.QueueItem> queueItems,
+                                    String queueId){
+        for(MediaSessionCompat.QueueItem item : queueItems ){
+            int index = 0;
+            if(queueId.equals(item.getQueueId())){
+                return index;
+            }
+            index++;
+        }
+        return -1;
+
+    }
+
+    //as long as the index is in the range of queue while the queue exists
+    public static boolean isIndexPlayable(int index, List<MediaSessionCompat.QueueItem> queue) {
+        return (queue != null && index >= 0 && index < queue.size());
+    }
 }

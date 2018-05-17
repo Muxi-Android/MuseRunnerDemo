@@ -6,4 +6,9 @@ public interface IMusicPlayPresenter {
     MediaBrowserCompat getMediaBrowser();
 
     void play();
+    void pause();
+    void next();
+    void previous();
+
+
 }

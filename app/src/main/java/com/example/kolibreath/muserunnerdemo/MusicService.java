@@ -5,10 +5,15 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaBrowserServiceCompat;
+import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.session.MediaSessionCompat;
 
 import java.util.List;
 
 public class MusicService extends MediaBrowserServiceCompat {
+
+    private QueueManager.MetadataUpdateListener mMetadataUpdateListenter;
+
     public MusicService() {
         super();
     }
@@ -23,4 +28,31 @@ public class MusicService extends MediaBrowserServiceCompat {
     public void onLoadChildren(@NonNull String parentId, @NonNull Result<List<MediaBrowserCompat.MediaItem>> result) {
 
     }
+
+    //todo to fill
+    private QueueManager.MetadataUpdateListener initListener(){
+        return new QueueManager.MetadataUpdateListener() {
+            @Override
+            public void onMetadataChanged(MediaMetadataCompat metadata) {
+
+            }
+
+            @Override
+            public void onMetadataRetrieveError() {
+
+            }
+
+            @Override
+            public void onCurrentQueueIndexUpdated(int queueIndex) {
+
+            }
+
+            @Override
+            public void onQueueUpdated(String title, List<MediaSessionCompat.QueueItem> newQueue) {
+
+            }
+        };
+    }
+
+
 }

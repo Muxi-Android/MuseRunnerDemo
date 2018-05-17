@@ -24,7 +24,7 @@ public class LocationUtils {
     //  停止定位
     public final static int LOCATION_STOP= 2;
     public final static String KEY_URL = "URL";
-    private static SimpleDateFormat sdf = null;
+    private static SimpleDateFormat mSdf = null;
 
     public static AMapLocationClientOption setOption(){
         AMapLocationClientOption locationOption = new AMapLocationClientOption();
@@ -157,14 +157,14 @@ public class LocationUtils {
         if (TextUtils.isEmpty(strPattern)) {
             strPattern = "yyyy-MM-dd HH:mm:ss";
         }
-        if (sdf == null) {
+        if (mSdf == null) {
             try {
-                sdf = new SimpleDateFormat(strPattern, Locale.CHINA);
+                mSdf = new SimpleDateFormat(strPattern, Locale.CHINA);
             } catch (Throwable e) {
             }
         } else {
-            sdf.applyPattern(strPattern);
+            mSdf.applyPattern(strPattern);
         }
-        return sdf == null ? "NULL" : sdf.format(l);
+        return mSdf == null ? "NULL" : mSdf.format(l);
     }
 }

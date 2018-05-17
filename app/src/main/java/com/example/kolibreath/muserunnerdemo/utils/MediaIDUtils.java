@@ -64,4 +64,11 @@ public class MediaIDUtils {
 
         return  createMediaID(null, parentHierarchy);
     }
+
+    public static String extractMusicIDFromMediaID(String mediaID){
+        int pos = mediaID.indexOf(LEAF_SPEARATOR);
+        if(pos >= 0)
+            return mediaID.substring(pos +1);
+        return null;
+    }
 }
