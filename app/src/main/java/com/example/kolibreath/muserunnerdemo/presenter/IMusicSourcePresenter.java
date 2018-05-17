@@ -10,4 +10,7 @@ public interface IMusicSourcePresenter {
     void execRequest();
 
     Iterator<MediaMetadataCompat> iterator();
+
+    //getMusic metadata from musicListbyid
+    MediaMetadataCompat getMusic(String mediaID);
 }

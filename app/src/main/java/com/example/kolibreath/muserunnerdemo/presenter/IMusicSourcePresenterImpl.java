@@ -30,4 +30,8 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
         return null;
     }
 
+    @Override
+    public MediaMetadataCompat getMusic(String mediaID) {
+        return null;
+    }
 }

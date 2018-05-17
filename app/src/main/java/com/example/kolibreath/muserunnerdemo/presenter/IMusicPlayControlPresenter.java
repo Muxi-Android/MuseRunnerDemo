@@ -2,7 +2,7 @@ package com.example.kolibreath.muserunnerdemo.presenter;
 
 import android.support.v4.media.MediaBrowserCompat;
 
-public interface IMusicPlayPresenter {
+public interface IMusicPlayControlPresenter {
     MediaBrowserCompat getMediaBrowser();
 
     void play();

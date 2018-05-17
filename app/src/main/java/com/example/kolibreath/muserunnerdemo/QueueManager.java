@@ -1,10 +1,8 @@
 package com.example.kolibreath.muserunnerdemo;
 
 import android.content.res.Resources;
-import android.media.session.MediaSession;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
-import android.util.ArrayMap;
 
 import com.example.kolibreath.muserunnerdemo.presenter.IMusicSourcePresenter;
 import com.example.kolibreath.muserunnerdemo.utils.MediaIDUtils;
@@ -89,7 +87,7 @@ public class QueueManager {
 
         if( current == null)
             return false;
-        String[] currentBrowingHierarchy = MediaIDUtils.getHierarchy(current.getDescription().getMediaId();
+        String[] currentBrowingHierarchy = MediaIDUtils.getHierarchy(current.getDescription().getMediaId());
 
         return Arrays.equals(newBrowsingHierarchy,currentBrowingHierarchy);
     }
@@ -102,7 +100,15 @@ public class QueueManager {
         }
 
         String musicId = MediaIDUtils.extractMusicIDFromMediaID(currentMusic.getDescription().getMediaId());
-        MediaMetadataCompat metadata = mPresenter.getMusic
+        MediaMetadataCompat metadata = mPresenter.getMusic(musicId);
+
+        if(metadata ==  null)
+            throw new IllegalArgumentException("Invalid musicId"+ musicId);
+
+        if(metadata.getDescription().getIconBitmap() == null && metadata.getDescription().getIconUri() != null){
+            String albumUri = metadata.getDescription().getIconUri().toString();
+            //todo cache the bitmap and update
+        }
     }
 
     public interface MetadataUpdateListener {

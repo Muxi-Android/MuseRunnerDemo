@@ -2,14 +2,12 @@ package com.example.kolibreath.muserunnerdemo.presenter;
 
 
 import android.content.Context;
-import android.support.v4.media.MediaMetadataCompat;
+import android.support.v4.media.MediaBrowserCompat;
 
 import com.example.kolibreath.muserunnerdemo.view.IBrowseView;
 import com.example.kolibreath.muserunnerdemo.view.IControlView;
 
-import java.util.Iterator;
-
-public class IMusicPresenterImpl implements IMusicSourcePresenter {
+public class IMusicPlaycontrolPresenterImpl implements IMusicPlayControlPresenter {
 
     private Context mContext;
     private IControlView mIControlView;
@@ -40,22 +38,13 @@ public class IMusicPresenterImpl implements IMusicSourcePresenter {
 
     }
 
-    public IMusicPresenterImpl(Context context, IBrowseView iBrowseView,
-                               IControlView iControlView){
+    public IMusicPlaycontrolPresenterImpl(Context context, IBrowseView iBrowseView,
+                                          IControlView iControlView){
         this.mContext = context;
         this.mIControlView = iControlView;
         this.mIBrowseView = iBrowseView;
 
     }
 
-    @Override
-    public void execRequest() {
-
-    }
-
-    @Override
-    public Iterator<MediaMetadataCompat> iterator() {
-        return null;
-    }
 
 }
