@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.kolibreath.muserunnerdemo.model;
+package net.muxistudio.muserunnerdemo.model;
 
 import android.support.v4.media.MediaMetadataCompat;
 import android.text.TextUtils;

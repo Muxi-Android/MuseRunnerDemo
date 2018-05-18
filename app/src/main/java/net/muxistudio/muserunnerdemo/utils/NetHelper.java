@@ -1,6 +1,7 @@
-package com.example.kolibreath.muserunnerdemo.utils;
+package net.muxistudio.muserunnerdemo.utils;
 
-import com.example.kolibreath.muserunnerdemo.model.MusicMetaData;
+
+import net.muxistudio.muserunnerdemo.model.MusicMetaData;
 
 import java.util.concurrent.TimeUnit;
 

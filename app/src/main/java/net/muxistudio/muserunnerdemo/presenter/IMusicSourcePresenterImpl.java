@@ -5,12 +5,12 @@ import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaMetadataCompat;
 
 import android.util.Log;
-import android.widget.ArrayAdapter;
-//这里的包名应该有问题
-import com.example.kolibreath.muserunnerdemo.model.MusicMetaData;
-import com.example.kolibreath.muserunnerdemo.model.MutableMediaMetadata;
-import com.example.kolibreath.muserunnerdemo.utils.NetHelper;
-import com.example.kolibreath.muserunnerdemo.view.IBrowseView;
+
+
+import net.muxistudio.muserunnerdemo.model.MusicMetaData;
+import net.muxistudio.muserunnerdemo.model.MutableMediaMetadata;
+import net.muxistudio.muserunnerdemo.utils.NetHelper;
+import net.muxistudio.muserunnerdemo.view.IBrowseView;
 
 import java.util.ArrayList;
 import java.util.Collections;

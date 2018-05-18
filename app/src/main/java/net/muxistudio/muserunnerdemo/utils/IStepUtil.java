@@ -10,8 +10,8 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.example.kolibreath.muserunnerdemo.App;
 
+import net.muxistudio.muserunnerdemo.App;
 import net.muxistudio.muserunnerdemo.utils.base.StepCount;
 import net.muxistudio.muserunnerdemo.utils.base.StepValuePassListener;
 
@@ -79,7 +79,7 @@ public class IStepUtil {
 
         private void initDate() {
             CURRENT_DATE = getTodayDate();
-            stepNum = com.example.kolibreath.muserunnerdemo.utils.SharedPreferencesUtils.readInteger(CURRENT_DATE);
+            stepNum = SharedPreferencesUtils.readInteger(CURRENT_DATE);
         }
 
         private void startStepDetector() {
@@ -168,7 +168,7 @@ public class IStepUtil {
         }
 
         private void updateNum() {
-            com.example.kolibreath.muserunnerdemo.utils.SharedPreferencesUtils.storeInteger(CURRENT_DATE,stepNum);
+            SharedPreferencesUtils.storeInteger(CURRENT_DATE,stepNum);
         }
 
         @Override
