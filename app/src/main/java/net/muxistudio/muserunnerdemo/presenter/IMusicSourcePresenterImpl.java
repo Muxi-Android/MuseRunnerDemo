@@ -142,10 +142,12 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
                 });
 
     }
-
+    // todo wpy：Finnish this method
     //该方法还没写完...
     @Override
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
+
+
         return null;
     }
 
