@@ -90,7 +90,9 @@ public class MusicPlayback implements  Playback{
     }
 
     private void releaseAudioFocus(){
-        if(mAudioManager.abandonAudioFocus())
+        if(mAudioManager.abandonAudioFocus(
+
+        ))
     }
 
     //todo to fullfill
