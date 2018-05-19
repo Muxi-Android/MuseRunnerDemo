@@ -3,8 +3,9 @@ package net.muxistudio.muserunnerdemo.presenter;
 import android.content.Context;
 import android.support.v4.media.MediaBrowserCompat;
 
-import com.example.kolibreath.muserunnerdemo.view.IBrowseView;
-import com.example.kolibreath.muserunnerdemo.view.IControlView;
+import net.muxistudio.muserunnerdemo.view.IBrowseView;
+import net.muxistudio.muserunnerdemo.view.IControlView;
+
 
 public class IMusicPlaycontrolPresenterImpl implements IMusicPlayControlPresenter {
 
