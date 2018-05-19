@@ -3,7 +3,8 @@ package net.muxistudio.muserunnerdemo.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.kolibreath.muserunnerdemo.App;
+import net.muxistudio.muserunnerdemo.App;
+
 
 /**
  * Created by yueuy on 18-2-1.

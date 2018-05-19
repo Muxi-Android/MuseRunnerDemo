@@ -18,6 +18,7 @@ import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 
+
 import net.muxistudio.muserunnerdemo.playback.MusicService;
 import net.muxistudio.muserunnerdemo.utils.ResourceHelper;
 
@@ -89,13 +90,12 @@ public class MediaNotificationManager extends BroadcastReceiver{
 
     public MediaNotificationManager(MusicService musicService) throws RemoteException {
         this.mMusicService = musicService;
-
         //todo updateSessionToken()
         updateSessionToken();
 
         //get Theme color
         try {
-            mNotificationColor = ResourceHelper.getThemeColor(mMusicService, R.attr.colorPrimary, Color.GRAY);
+            mNotificationColor = ResourceHelper.getThemeColor(mMusicService,R.attr.colorPrimary, Color.GRAY);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
