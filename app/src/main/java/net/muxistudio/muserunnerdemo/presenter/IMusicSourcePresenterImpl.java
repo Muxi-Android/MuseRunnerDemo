@@ -35,9 +35,8 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
     private ConcurrentMap<String, List<MediaMetadataCompat>> mMusicListByGenre;
     private  ConcurrentMap<String, MutableMediaMetadata> mMusicListById;
 
-    enum State {
-        NON_INITIALIZED, INITIALIZING, INITIALIZED
-    }
+    private Iterator<MediaMetadataCompat> mIterator;
+    enum State {NON_INITIALIZED, INITIALIZING, INITIALIZED}
     //同步锁
     private volatile State mCurrentState = State.NON_INITIALIZED;
 
@@ -51,7 +50,8 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
 
     }
 
-    //我简单的先写了一点 为了自己的需要...
+    //我
+    // 简单的先写了一点 为了自己的需要...
     //这个构造方法...有点迷
     public IMusicSourcePresenterImpl(IBrowseView view){
         this.mBrowseView = view;
@@ -71,6 +71,10 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
     }
 
 
+    @Override
+    public Iterator<MediaMetadataCompat> iterator() {
+        return mIterator ;
+    }
 
     /**
      * Get music tracks of the given genre
@@ -93,8 +97,6 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
     }
 
 
-    //需要将MusicMetaData转换为 类似于 RemoteJSONProvider中的形式,这样我方便拿到你封装过得
-    //MediaMetaData
 
     @Override
     public void execRequest(final Callback callback) {
@@ -122,6 +124,8 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
                             for (int i=0;i<list.size();i++){
                                 tracks.add(buildFromJSON(list.get(i)));
                             }
+
+                            mIterator = tracks.iterator();
 
                             if (mCurrentState==State.NON_INITIALIZED){
                                 mCurrentState=State.INITIALIZED;

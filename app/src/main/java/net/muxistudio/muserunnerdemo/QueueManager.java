@@ -112,6 +112,10 @@ public class QueueManager {
         }
     }
 
+    public void setRandomQueue(){
+
+    }
+
     public interface MetadataUpdateListener {
         void onMetadataChanged(MediaMetadataCompat metadata);
         void onMetadataRetrieveError();

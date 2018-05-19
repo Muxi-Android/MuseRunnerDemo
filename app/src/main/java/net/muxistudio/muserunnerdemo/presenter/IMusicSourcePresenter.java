@@ -10,8 +10,10 @@ import java.util.List;
 public interface IMusicSourcePresenter {
 
     /**该函数完全封装执行网络请求，
-    * @param callback 这个回调在请求数据成功后并封装完毕后执行，可以在接口中的方法来sendresult
+    * @param #IMusicSourcePresenterImpl.Callback 这个回调在请求数据成功后并封装完毕后执行，可以在接口中的方法来sendresult
     */
+
+    Iterator<MediaMetadataCompat> iterator();
     void execRequest(IMusicSourcePresenterImpl.Callback callback);
 
     List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources);

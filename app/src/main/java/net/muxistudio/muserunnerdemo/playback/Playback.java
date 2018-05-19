@@ -1,5 +1,7 @@
 package net.muxistudio.muserunnerdemo.playback;
 
+import android.support.v4.media.session.MediaSessionCompat;
+
 public interface Playback {
 
     //control MusicPlayback to PlayMusic(BGM)
@@ -19,11 +21,11 @@ public interface Playback {
 
     void updateLastKnownSteamPosition();
 
-    void play();
+    void play(MediaSessionCompat.QueueItem queueItem);
 
     void pause();
 
-    void seekTo();
+    void seekTo(long position);
 
     void setCurrentMediaId(String mediaId);
 

@@ -76,6 +76,11 @@ public class QueueUtils {
 
     }
 
+    public static List<MediaSessionCompat.QueueItem> getRandomQueue(IMusicSourcePresenter presenter) {
+        List<MediaMetadataCompat> result = new ArrayList<>();
+        //todo to test if anything bad happens without implementing the shuffle method in Presenter
+        List<MediaMetadataCompat> list = presenter.
+    }
     //as long as the index is in the range of queue while the queue exists
     public static boolean isIndexPlayable(int index, List<MediaSessionCompat.QueueItem> queue) {
         return (queue != null && index >= 0 && index < queue.size());
