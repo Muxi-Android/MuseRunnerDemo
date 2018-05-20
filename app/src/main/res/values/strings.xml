@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MuseRunnerDemo</string>
+    <string name="browse_musics_by_genre_subtitle">%1$s songs</string>
 </resources>

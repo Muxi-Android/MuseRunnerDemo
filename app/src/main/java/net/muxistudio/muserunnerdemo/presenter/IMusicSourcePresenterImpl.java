@@ -1,14 +1,18 @@
 package net.muxistudio.muserunnerdemo.presenter;
 
 import android.content.res.Resources;
+import android.net.Uri;
 import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 
 import android.util.Log;
 
 
+import net.muxistudio.muserunnerdemo.R;
 import net.muxistudio.muserunnerdemo.model.MusicMetaData;
 import net.muxistudio.muserunnerdemo.model.MutableMediaMetadata;
+import net.muxistudio.muserunnerdemo.utils.MediaIDUtils;
 import net.muxistudio.muserunnerdemo.utils.NetHelper;
 import net.muxistudio.muserunnerdemo.view.IBrowseView;
 
@@ -22,9 +26,16 @@ import java.util.concurrent.ConcurrentMap;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
+
+import static net.muxistudio.muserunnerdemo.utils.MediaIDUtils.MEDIA_ID_MUSICS_BY_GENRE;
+import static net.muxistudio.muserunnerdemo.utils.MediaIDUtils.MEDIA_ID_ROOT;
+import static net.muxistudio.muserunnerdemo.utils.MediaIDUtils.createMediaID;
+
 /**
  * Created by MessiLP-wpy on 18-5-17.
  * 该类将uamp中的Gsonsource和musicProvider结合在一起
+ *
+ * MediaIDs are of the form <categoryType>/<categoryValue>|<musicUniqueId>
  */
 public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
     private IBrowseView mBrowseView;
@@ -142,15 +153,88 @@ public class IMusicSourcePresenterImpl implements IMusicSourcePresenter {
                 });
 
     }
-    // todo wpy：Finnish this method
+
+
+
+    //这个方法getChildren及他的三个方法，还有service的onGetRoot真的没看懂，只是把复制过来了
     //该方法还没写完...
     @Override
     public List<MediaBrowserCompat.MediaItem> getChildren(String mediaId, Resources resources) {
+        List<MediaBrowserCompat.MediaItem> mediaItems = new ArrayList<>();
 
+        //isBrowseable代表该mediaid有前缀
+        if (!MediaIDUtils.isBrowseable(mediaId)) {
+            return mediaItems;
+        }
 
-        return null;
+        if (MEDIA_ID_ROOT.equals(mediaId)) {
+            mediaItems.add(createBrowsableMediaItemForRoot(resources));
+
+        } else if (MEDIA_ID_MUSICS_BY_GENRE.equals(mediaId)) {
+            for (String genre : getGenres()) {
+                mediaItems.add(createBrowsableMediaItemForGenre(genre, resources));
+            }
+
+        } else if (mediaId.startsWith(MEDIA_ID_MUSICS_BY_GENRE)) {
+            String genre = MediaIDUtils.getHierarchy(mediaId)[1];
+            for (MediaMetadataCompat metadata : getMusicsByGenre(genre)) {
+                mediaItems.add(createMediaItem(metadata));
+            }
+
+        } else {
+            Log.d(TAG, "getChildren: ");
+        }
+        return mediaItems;
     }
 
+    private MediaBrowserCompat.MediaItem createBrowsableMediaItemForRoot(Resources resources) {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
+                .setMediaId(MEDIA_ID_MUSICS_BY_GENRE)
+                .setTitle("Genres")
+                .setSubtitle("Songs by genre")
+                .setIconUri(Uri.parse("android.resource://" +
+                        "com.example.android.uamp/drawable/ic_by_genre"))
+                .build();
+        return new MediaBrowserCompat.MediaItem(description,
+                MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
+    }
+
+    private MediaBrowserCompat.MediaItem createBrowsableMediaItemForGenre(String genre,
+                                                                          Resources resources) {
+        MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
+                .setMediaId(createMediaID(null, MEDIA_ID_MUSICS_BY_GENRE, genre))
+                .setTitle(genre)
+                .setSubtitle(resources.getString(
+                        R.string.browse_musics_by_genre_subtitle, genre))
+                .build();
+        return new MediaBrowserCompat.MediaItem(description,
+                MediaBrowserCompat.MediaItem.FLAG_BROWSABLE);
+    }
+
+    private MediaBrowserCompat.MediaItem createMediaItem(MediaMetadataCompat metadata) {
+        // Since mediaMetadata fields are immutable, we need to create a copy, so we
+        // can set a hierarchy-aware mediaID. We will need to know the media hierarchy
+        // when we get a onPlayFromMusicID call, so we can create the proper queue based
+        // on where the music was selected from (by artist, by genre, random, etc)
+        //我们可以基于在音乐类型的选择（由艺术家、流派、随机、等）构建适当的音乐队列
+        String genre = metadata.getString(MediaMetadataCompat.METADATA_KEY_GENRE);
+        String hierarchyAwareMediaID = MediaIDUtils.createMediaID(
+                metadata.getDescription().getMediaId(), MEDIA_ID_MUSICS_BY_GENRE, genre);
+        MediaMetadataCompat copy = new MediaMetadataCompat.Builder(metadata)
+                .putString(MediaMetadataCompat.METADATA_KEY_MEDIA_ID, hierarchyAwareMediaID)
+                .build();
+        return new MediaBrowserCompat.MediaItem(copy.getDescription(),
+                MediaBrowserCompat.MediaItem.FLAG_PLAYABLE);
+
+    }
+
+
+
+
+
+
+    //算法
+    //这个是根据musiclistbyid这个list，根据gern分成不同的几个list
     private synchronized void buildListsByGenre() {
         ConcurrentMap<String, List<MediaMetadataCompat>> newMusicListByGenre = new ConcurrentHashMap<>();
 
