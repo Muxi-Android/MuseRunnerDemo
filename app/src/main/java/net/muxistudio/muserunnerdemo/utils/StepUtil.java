@@ -22,9 +22,9 @@ import java.util.Date;
  * Created by zdf on 18-5-17.
  */
 
-public class IStepUtil {
+public class StepUtil {
 
-    private int stepNum;
+    private int stepNum = -1;
     private int stepSpeed;
 
     public static String getTodayDate() {
@@ -34,6 +34,7 @@ public class IStepUtil {
     }
 
     public int getTodayStepNum(){
+        if(stepNum == -1){return SharedPreferencesUtils.readInteger(getTodayDate());}
         return stepNum;
     }
 
