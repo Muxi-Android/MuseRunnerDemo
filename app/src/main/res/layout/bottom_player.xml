@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:layout_gravity="bottom"
+    android:id="@+id/float_bottom_player"
+    android:background="@color/colorBackground">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/music_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_centerVertical="true"/>
+
+    <LinearLayout
+        android:id="@+id/music_intro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/music_image"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/music_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="music"
+            android:textColor="@color/colorLight"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/music_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="artist"
+            android:textColor="@color/colorPrimary"
+            />
+    </LinearLayout>
+
+    <android.support.v4.widget.CircleImageView
+        android:id="@+id/music_circular_bar"
+        style="@style/CircularBarPagerStyle"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_alignBottom="@+id/music_intro"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        />
+
+</RelativeLayout>
