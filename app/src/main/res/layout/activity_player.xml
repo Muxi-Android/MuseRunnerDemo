@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
 
     <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
@@ -14,11 +15,20 @@
         android:layout_marginLeft="10dp"
         />
 
+    <LinearLayout
+        android:id="@+id/music_lyric"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/music_volume"
+        android:layout_above="@+id/music_progress"
+        >
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/music_progress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_above="@+id/music_control"
         >
 
