@@ -1,5 +1,10 @@
 package net.muxistudio.muserunnerdemo.utils;
 
+import android.app.Activity;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.session.MediaControllerCompat;
+import android.text.TextUtils;
+
 import java.util.Arrays;
 
 //MediaIDs are defined by the User, the form of them are like:
@@ -69,5 +74,21 @@ public class MediaIDUtils {
         if(pos >= 0)
             return mediaID.substring(pos +1);
         return null;
+    }
+    public static boolean isMediaItemPlaying(Activity context, MediaBrowserCompat.MediaItem mediaItem) {
+        // Media item is considered to be playing or paused based on the controller's current
+        // media id
+        MediaControllerCompat controller = MediaControllerCompat.getMediaController(context);
+        if (controller != null && controller.getMetadata() != null) {
+            String currentPlayingMediaId = controller.getMetadata().getDescription()
+                    .getMediaId();
+            String itemMusicId = MediaIDUtils.extractMusicIDFromMediaID(
+                    mediaItem.getDescription().getMediaId());
+            if (currentPlayingMediaId != null
+                    && TextUtils.equals(currentPlayingMediaId, itemMusicId)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
