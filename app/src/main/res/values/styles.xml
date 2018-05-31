@@ -8,19 +8,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="CircularBarPagerStyle">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="progress_arc_max">100</item>
-        <item name="arc_progress">0</item>
-        <item name="progress_arc_clockwise_outline_width">0.75dp</item>
-        <item name="progress_arc_counter_clockwise_outline_width">0.75dp</item>
-        <item name="progress_arc_clockwise_width">8dp</item>
-        <item name="progress_arc_counter_clockwise_width">8dp</item>
 
-        <item name="progress_start_line_enabled">true</item>
-        <item name="progress_pager_on_click_enabled">true</item>
-        <item name="progress_pager_fill_circle_color">#FFFFFF</item>
-        <item name="progress_arc_clockwise_color">#FFFFFF</item>
-    </style>
 </resources>

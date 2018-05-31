@@ -125,7 +125,7 @@ if(aMap == null){
    aMap = mapView.getMap();
 }
 7.
-一条线一条线画的话递归
+一条线一条线画的画递归
 8.
 private UiSettings mUiSettings;
 mUiSettings = aMap.getUiSettings();

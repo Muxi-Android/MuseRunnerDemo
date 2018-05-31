@@ -44,7 +44,6 @@
 
     <android.support.v4.widget.CircleImageView
         android:id="@+id/music_circular_bar"
-        style="@style/CircularBarPagerStyle"
         android:layout_width="40sp"
         android:layout_height="40sp"
         android:layout_alignBottom="@+id/music_intro"
