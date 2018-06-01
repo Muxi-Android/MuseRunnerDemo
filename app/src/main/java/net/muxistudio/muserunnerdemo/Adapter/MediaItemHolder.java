@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import net.muxistudio.muserunnerdemo.R;
 import net.muxistudio.muserunnerdemo.utils.MediaIDUtils;
 
 /**
@@ -65,7 +66,7 @@ public class MediaItemHolder {
         Integer cachedState = STATE_INVALID;
         if (convertView==null){
             convertView= LayoutInflater.from(activity)
-                    .inflate(R.layoyt.media_item_view);
+                    .inflate(R.layout.media_item_view,viewGroup,false);
             holder=new MediaItemHolder();
             holder.mImageView = (ImageView) convertView.findViewById(R.id.play_eq);
             holder.mTitleView = (TextView) convertView.findViewById(R.id.title);
@@ -89,7 +90,7 @@ public class MediaItemHolder {
             } else {
                 holder.mImageView.setVisibility(View.GONE);
             }
-            convertView.setTag(R.id.tag_mediaitem_state_cache, state);
+            convertView.setTag(STATE_TAG, state);
         }
 
         return convertView;
@@ -101,7 +102,7 @@ public class MediaItemHolder {
             case STATE_PLAYABLE:
                 Drawable pauseDrawable = ContextCompat.getDrawable(context,
                         R.drawable.ic_play_arrow_black_36dp);
-                DrawableCompat.setTintList(pauseDrawable,);
+                DrawableCompat.setTintList(pauseDrawable,sColorStateNotPlaying);
                 return pauseDrawable;
             case STATE_PLAYING:
                 AnimationDrawable animation = (AnimationDrawable)
