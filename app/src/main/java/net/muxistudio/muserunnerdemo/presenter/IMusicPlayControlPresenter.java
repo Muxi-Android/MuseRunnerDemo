@@ -24,9 +24,10 @@ public interface IMusicPlayControlPresenter {
      * 当MediaBrowser已经连接时调用
      * 这个方法可在 fragment.onStart() 或 已知Activity在onStart后完成了连接的情况下调用
      * 在这里面执行subscribe，unsubscribe操作以及getroot
-     * 并且执行view的updateTitle();
+     *
      */
     void onConnected();
+
     void play();
     void pause();
     void next();

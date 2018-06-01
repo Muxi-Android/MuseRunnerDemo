@@ -1,11 +1,9 @@
 package net.muxistudio.muserunnerdemo;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaControllerCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -58,11 +56,11 @@ public class MusicPlayerActivity extends BaseActivity implements IBrowseView {
     }
 
     public void navigateToBrowser(String mediaId){
-        MediaBrowerFragment fragment=(MediaBrowerFragment)getBrowseFragment();
+        MediaBrowerFragment fragment=getBrowseFragment();
         if (fragment==null|| TextUtils.equals(fragment.getMediaId(),mediaId)){
             fragment=new MediaBrowerFragment();
             fragment.setMediaId(mediaId);
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.setCustomAnimations(
                     R.animator.slide_in_from_right, R.animator.slide_out_to_left,
                     R.animator.slide_in_from_left, R.animator.slide_out_to_right);
@@ -79,6 +77,9 @@ public class MusicPlayerActivity extends BaseActivity implements IBrowseView {
         return (MediaBrowerFragment) getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG);
     }
 
+    public IMusicPlayControlPresenter getIMusicPlay(){
+        return mIMusicPlay;
+    }
 
     @Override
     public void updataData  () {

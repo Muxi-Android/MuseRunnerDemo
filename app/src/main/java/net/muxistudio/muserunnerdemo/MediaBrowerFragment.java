@@ -1,6 +1,5 @@
 package net.muxistudio.muserunnerdemo;
 
-import android.media.browse.MediaBrowser;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.media.MediaBrowserCompat;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import net.muxistudio.muserunnerdemo.R;
 
 import net.muxistudio.muserunnerdemo.Adapter.MediaItemAdapter;
 
@@ -20,6 +18,7 @@ import net.muxistudio.muserunnerdemo.Adapter.MediaItemAdapter;
 public class MediaBrowerFragment extends Fragment {
     private static final String MEDIA_TAG="media_id_tag";
     private MediaItemAdapter mAdapter;
+    MusicPlayerActivity mMusicPlayerActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,8 +31,8 @@ public class MediaBrowerFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 MediaBrowserCompat.MediaItem item=mAdapter.getItem(i);
-                MusicPlayerActivity musicPlayerActivity=(MusicPlayerActivity)getActivity();
-                musicPlayerActivity.onMediaItemSelect(item);
+                mMusicPlayerActivity=(MusicPlayerActivity)getActivity();
+                mMusicPlayerActivity.onMediaItemSelect(item);
             }
         });
         return rootView;
@@ -42,6 +41,7 @@ public class MediaBrowerFragment extends Fragment {
     @Override
     public void onStart(){
         super.onStart();
+
     }
 
 
